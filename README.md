@@ -18,11 +18,13 @@ The ajax example includes live-reloading search results (when the form is submit
 4. The alternative scrapes the RSS feed rather than querying the Ghost API.
 It's just better to use the API. It's a lot simpler to capture JSON objects and map them to DOM nodes, and there's also the issue that Ghost might not keep the RSS feed around forever.
     
-5. The alternative users lunr, not elasticlunr.
-Elasticlunr is a fork of lunr which adds some cool features to improve search fidelity. Well worth it.
+5. This solution upgrades to elasticlunr.
+[Elasticlunr](http://elasticlunr.com/ "elasticlunr") is a fork of lunr which adds some cool features to improve search fidelity. Well worth it.
     
     
 ### How to use this script
+`npm install elasticlunr`
+
 `cd /var/www/ghost/core/server/controllers/frontend/index.js`
 
 `cd /var/www/ghost/core/server/routes/frontend.js`
