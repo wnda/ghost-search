@@ -3,11 +3,11 @@ elasticlunr = require('elasticlunr'),
 
 // frontendControllers = {
 // ...
-procSearch: function procSearch(req, res){
+procSearch: function liveSearch(req, res){
 
-        var dataquery = req.body.query;
+        var query = req.body.query;
 
-        function dataset(apidata){
+        function build_index(apidata){
             var docs=[];
             for(var i=apidata.posts.length,j=0;j<i;j++){
               docs.push({
@@ -30,8 +30,8 @@ procSearch: function procSearch(req, res){
             idx.addDoc(docs[j]);
           }
           
-          function matches(dataquery){
-            return idx.search(dataquery,{
+          function find_matches(query){
+            return idx.search(query,{
               fields:{
                 title:{
                   boost:2,
@@ -43,12 +43,12 @@ procSearch: function procSearch(req, res){
               expand:true
             });
           }
-          return matches(dataquery);
+          return find_matches(query);
         }
         
-        api.posts.browse({status:'published',include:'title,markdown'})
+        api.posts.browse({status:'published',include:'title,tags,markdown'})
         .then(function (result){
-            return res.status(200).send(dataset(result))})
+            return res.status(200).send(build_index(result))})
         .catch(function (error){
             return res.status(200).send("Error: ",error);
         });
