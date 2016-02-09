@@ -3,7 +3,7 @@ elasticlunr = require('elasticlunr'),
 
 // frontendControllers = {
 // ...
-procSearch: function liveSearch(req, res){
+procSearch: function ghostSearch(req, res){
 
         var query = req.body.query;
 
