@@ -1,1 +1,1 @@
-router.post('/search', frontend.procSearch);
+router.post('/search', frontend.ghostSearch);
