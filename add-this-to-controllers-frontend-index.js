@@ -3,11 +3,11 @@ elasticlunr = require('elasticlunr'),
 
 // frontendControllers = {
 // ...
-procSearch: function ghostSearch(req, res){
+ghostSearch: function ghostSearch(req, res){
 
-        var query = req.body.query;
+        var dataquery = req.body.query;
 
-        function build_index(apidata){
+        function dataset(apidata){
             var docs=[];
             for(var i=apidata.posts.length,j=0;j<i;j++){
               docs.push({
@@ -18,7 +18,7 @@ procSearch: function ghostSearch(req, res){
             }
             return search(docs);
         }
-        
+
         function search(docs){
           var idx=elasticlunr();
               idx.addField('title');
@@ -29,29 +29,25 @@ procSearch: function ghostSearch(req, res){
           for(var i=docs.length,j=0;j<i;j++){
             idx.addDoc(docs[j]);
           }
-          
-          function find_matches(query){
-            return idx.search(query,{
+
+          function matches(dataquery){
+            return idx.search(dataquery,{
               fields:{
-                title:{
-                  boost:2,
-                  bool:"AND"
-                },
+                title:{boost:2,expand:true},
                 body:{boost:1}
               },
-              bool:"OR",
-              expand:true
+              bool:"OR"
             });
           }
-          return find_matches(query);
+          return matches(dataquery);
         }
-        
-        api.posts.browse({status:'published',include:'title,tags,markdown'})
+
+        api.posts.browse({status:'published',include:'title,markdown'})
         .then(function (result){
-            return res.status(200).send(build_index(result))})
+            return res.status(200).send(dataset(result))})
         .catch(function (error){
             return res.status(200).send("Error: ",error);
         });
-        
+
     },
     // next controller
