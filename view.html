@@ -1,6 +1,8 @@
-<form method="POST" action="/search" id="searchform">
-    <input type="text" name="query" id="query">
-    <button type="submit">Search</button>
+<div class="search">
+    <form method="POST" action="/search" id="searchform">
+        <div class="search-bar">
+            <input type="text" name="query" id="search-box" class="search-box" placeholder="Search:" autocomplete="off" required="">
+        <   button class="button search-button" type="submit">Search</button>
+        </div>
     </form>
-    <h2 id="feedback"></h2>
-    <div id="results"></div>
+</div>
