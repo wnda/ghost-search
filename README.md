@@ -19,9 +19,12 @@ It's just better to use the API. It's a lot simpler to capture JSON objects and 
 [Elasticlunr](http://elasticlunr.com/ "elasticlunr") is a fork of lunr which adds some cool features to improve search fidelity. Well worth it.
     
     
-### How to use this script
+### How to use ghost-search
 
-First, get elasticlunr:
+You'll obviously need to have a Ghost blog. You can add this before or after you install your Ghost blog, but it's probably easier after you have a few posts so you can test it properly.
+
+First, get elasticlunr and add it to your other npm modules in Ghost:
+`cd /var/www/ghost`
 `npm install elasticlunr`
 
 Next, add the route you want to use:
@@ -30,10 +33,12 @@ Next, add the route you want to use:
 Append:
 `router.post('/search', frontend.ghostSearch);`
 
-Save. Then
+Save and exit. 
 
-Let's get the controller in place:
+Then, get the search controller in place:
 `cd /var/www/ghost/core/server/controllers/frontend/ && sudo nano index.js`
+
+Append the aptly named script. Save and exit.
 
 Finally, let's consider the view.
 `cd /var/www/ghost/content/themes/YOUR-THEME/YOUR-SEARCH-TEMPLATE.hbs`
