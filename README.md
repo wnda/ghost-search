@@ -46,4 +46,4 @@ Either include the form and JavaScript as is or muddle with the attributes to su
 
 This is pretty damned fast. Even if you like jQuery on the client-side, you should still implement search with this controller because it will enable you to tap in to the Ghost API rather than scrape the RSS feed. This method has a lot more potential in general. 
 
-And yes, obviously it can be done without JavaScript (which is why it's better than Ghosthunter) i.e. you can post the values to the server in the traditional no-JS way and still return search results.
+And yes, obviously it can be done without JavaScript (which is why it's better than Ghosthunter) i.e. you can post the values to the server in the traditional no-JS way and still return search results, though the results need to be passed on to a search results page which I will demonstrate at some point.
