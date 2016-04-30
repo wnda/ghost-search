@@ -40,7 +40,7 @@ Then, get the search controller in place:
 Append the aptly named script. Save and exit.
 
 Finally, let's consider the view.
-`cd /var/www/ghost/content/themes/YOUR-THEME/YOUR-SEARCH-TEMPLATE.hbs`
+`cd /var/www/ghost/content/themes/YOUR-THEME/partials/YOUR-SEARCH-TEMPLATE.hbs`
 
 Either include the form and JavaScript as is or muddle with the attributes to suit your application--just don't forget to reflect the changes in your route and/or controller.
 
