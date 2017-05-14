@@ -1,4 +1,3 @@
-// var ...
 elasticlunr = require('elasticlunr'),
 
 // frontendControllers = {
@@ -7,7 +6,7 @@ ghostSearch: function ghostSearch (req, res) {
 
   var dataquery = req.body.query;
 
-  function dataset (apidata) {
+  function buildDataset (apidata) {
     var docs = [], i = apidata.posts.length, j = 0;
     for (; j < i; ++j) {
       docs.push({
@@ -32,8 +31,8 @@ ghostSearch: function ghostSearch (req, res) {
       idx.addDoc(docs[j]);
     }
 
-    function matches (dataquery) {
-      return idx.search(dataquery, {
+    function matches (dq) {
+      return idx.search(dq, {
         fields: {
           title: { boost: 2, expand: true },
           body:  { boost: 1 }
@@ -41,17 +40,19 @@ ghostSearch: function ghostSearch (req, res) {
         bool: 'OR'
       });
     }
+
     return matches(dataquery);
   }
 
-  api.posts.browse({ 
-    status: 'published', 
-    include: 'title,markdown'
+  api.posts.browse({
+    status: 'published',
+    include: 'title, markdown'
+
   }).then(function (result) {
-    return res.status(200).send(dataset(result));
+    return res.status(200).send(buildDataset(result));
+
   }).catch(function (error) {
     return res.status(200).send("Error: ",error);
   });
 
-},
-    // next controller
+}
